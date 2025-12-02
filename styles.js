@@ -32,7 +32,7 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.2)",
   },
-  
+
   modalInner: {
     backgroundColor: "azure",
     padding: 20,
@@ -52,5 +52,39 @@ export default StyleSheet.create({
     fontWeight: "bold",
     margin: 5,
     color: "slategrey",
+  },
+
+  scroll: {
+    height: 1,
+    alignSelf: "stretch",
+  },
+
+  swipeContainer: {
+    flex: 1,
+    flexDirection: "row",
+    width: 200,
+    height: 50,
+    marginTop: 10,
+    alignSelf: "center",
+  },
+
+  swipeItem: {
+    width: 200,
+    height: 50,
+    backgroundColor: "azure",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: "slategrey",
+  },
+
+  swipeItemText: {
+    textAlign: "center",
+    color: "slategrey",
+  },
+
+  swipeBlank: {
+    width: 200,
+    height: 30,
   },
 });

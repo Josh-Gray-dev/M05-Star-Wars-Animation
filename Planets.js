@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, ActivityIndicator, TextInput, Modal } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, TextInput, Modal, ScrollView } from "react-native";
 import styles from "./styles";
+import Swipeable from "./Swipeable";
 
 function mapPlanets(results) {
   return results.map((planet, index) => ({
@@ -70,10 +71,15 @@ export default function Planets() {
       {loading ? (
         <ActivityIndicator />
       ) : (
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <Text>{item.value}</Text>}
-        />
+        <ScrollView style={styles.scroll}>
+          {data.map((item) => (
+            <Swipeable
+              key={item.key}
+              name={item.value}
+              onSwipe={() => showModalWithText(item.value)}
+            />
+          ))}
+        </ScrollView>
       )}
     </View>
   );

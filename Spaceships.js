@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, ActivityIndicator, TextInput, Modal } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, TextInput, Modal, ScrollView } from "react-native";
 import styles from "./styles";
+import Swipeable from "./Swipeable";
 
 function mapStarships(results) {
   return results.map((ship, index) => ({
@@ -70,10 +71,15 @@ export default function Spaceships() {
       {loading ? (
         <ActivityIndicator />
       ) : (
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <Text>{item.value}</Text>}
-        />
+        <ScrollView style={styles.scroll}>
+          {data.map((item) => (
+            <Swipeable
+              key={item.key}
+              name={item.value}
+              onSwipe={() => showModalWithText(item.value)}
+            />
+          ))}
+        </ScrollView>
       )}
     </View>
   );
