@@ -34,9 +34,10 @@ export default function App() {
 
       {Platform.OS === "web" && (
         <Tab.Navigator>
+          <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Planets" component={Planets} />
           <Tab.Screen name="Films" component={Films} />
-          <Tab.Screen name="Starships" component={Starships} />
+          <Tab.Screen name="Spaceships" component={Spaceships} />
         </Tab.Navigator>
       )}
     </NavigationContainer>

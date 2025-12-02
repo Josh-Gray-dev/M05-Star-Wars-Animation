@@ -37,6 +37,11 @@ export default function Spaceships() {
       .finally(() => setLoading(false));
   }, []);
 
+  function showModalWithText(text) {
+  setSubmittedText(text);
+  setModalVisible(true);
+}
+
   return (
     <View style={styles.container}>
       <LazyImage
