@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator, TextInput, Modal, ScrollView } from "react-native";
 import styles from "./styles";
 import Swipeable from "./Swipeable";
+import LazyImage from "./LazyImage";
+
+const shipImage = { uri: "https://static1.srcdn.com/wordpress/wp-content/uploads/2023/08/10-best-star-wars-spaceships.jpg" };
 
 function mapStarships(results) {
   return results.map((ship, index) => ({
@@ -16,6 +19,11 @@ export default function Spaceships() {
   const [changedText, setChangedText] = useState("");
   const [submittedText, setSubmittedText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [imageSource, setImageSource] = useState(null);
+
+  useEffect(() => {
+    setImageSource(shipImage);
+  }, []);
 
   useEffect(() => {
     fetch("https://swapi.dev/api/starships/")
@@ -31,6 +39,11 @@ export default function Spaceships() {
 
   return (
     <View style={styles.container}>
+      <LazyImage
+        style={styles.headerImage}
+        resizeMode="cover"
+        source={imageSource}
+      />
       <View style={styles.textInputContainer}>
         <Text style={styles.textInputLabel}>Spaceship search:</Text>
         <TextInput

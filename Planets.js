@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator, TextInput, Modal, ScrollView } from "react-native";
 import styles from "./styles";
 import Swipeable from "./Swipeable";
+import LazyImage from "./LazyImage";
+
+const planetImage = { uri: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/wm/2024/09/swo-all-planets-locations-featured.jpg" };
 
 function mapPlanets(results) {
   return results.map((planet, index) => ({
@@ -16,6 +19,11 @@ export default function Planets() {
   const [changedText, setChangedText] = useState("");
   const [submittedText, setSubmittedText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [imageSource, setImageSource] = useState(null);
+
+  useEffect(() => {
+    setImageSource(planetImage);
+  }, []);
 
   useEffect(() => {
     fetch("https://swapi.dev/api/planets/")
@@ -31,6 +39,11 @@ export default function Planets() {
 
   return (
     <View style={styles.container}>
+      <LazyImage
+        style={styles.headerImage}
+        resizeMode="cover"
+        source={imageSource}
+      />
       <View style={styles.textInputContainer}>
         <Text style={styles.textInputLabel}>Planet search:</Text>
         <TextInput
