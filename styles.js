@@ -87,10 +87,4 @@ export default StyleSheet.create({
     width: 200,
     height: 30,
   },
-
-  headerImage: {
-  width: "100%",
-  height: 160,
-  marginBottom: 10,
-},
 });
